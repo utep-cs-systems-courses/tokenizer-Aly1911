@@ -101,15 +101,24 @@ char *word_terminator(char *word) {
 
 /* Returns a fresly allocated new zero-terminated string 
    containing <len> chars from <inStr> */
-char *copy_str(char *inStr, short len){
+char *copy_str(char *inStr, short len)
 
-  char copy[len];
+{
 
-  for (int i = 0; i < len; i++) {
+  char *copyStr = malloc(( len + 1) * sizeof(char));
 
-    copy[i] = inStr[i];
+  int i;
 
-    printf("%c", inStr[i]);}
+  for (i=0; i < len; i++){
+
+    copyStr[i] = inStr[i];
+
+  }
+
+  copyStr[i] = '\0';
+
+  return copyStr;
+
 }
 
 /*Returns a freshly allocated zero-terminated vector of freshly allocated 
@@ -120,6 +129,9 @@ char *copy_str(char *inStr, short len){
      tokens[1] = "world"
      tokens[2] = "string" 
      tokens[3] = 0
+should be like 6-7 lines
+malloc ***
+int *numbers = (what casts it i.e.int*)malloc(number of bytes ex: with 5 numbers it would be 5*sizeofint so (5+1)*sizeof(int))
 */
 char **tokenize(char* str);
 
