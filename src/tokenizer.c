@@ -1,22 +1,5 @@
-#include <stdio.h>
+#include <stdlib.h>
 
-int main()
-
-{
-
-  char *word_start(char *str);
-
-  int non_space_char(char c);
-
-  char *word_terminator(char *word);
-
-  char *copy_str(char *inStr, short len);
-
-  char words[] = "  fattyfatfatty";
-
-  printf("%c", *copy_str(words, 10));
-  return 0;
-}
 
 int space_char(char c) {
 
@@ -138,6 +121,3 @@ void free_tokens(char **tokens);
 
 
 
-#endif
-
- 
