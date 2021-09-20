@@ -1,3 +1,4 @@
+
 # comments begin with #
 
 
@@ -6,7 +7,7 @@
 
 # for convenience, define variable $(OBJS) to list of object files
 
-OBJS= tester.o history.o uimain.o
+OBJS= tester.o uimain.o
 
 
 
@@ -20,21 +21,21 @@ CFLAGS=-g -O3 # -g for debug, -O3 for optimization
 
 # first target is built by default.  Usually named "all"
 
-all: tokenize
+all: tokenizer
 
 
 
-# asciidraw (target) depends on all object files (prerequisites)
+# tokenize (target) depends on all object files (prerequisites)
 
-tokenize: $(OBJS)
+tokenizer: $(OBJS)
 
-	cc -o tokenize $(CFLAGS) $(OBJS)
+	cc -o tester $(CFLAGS) $(OBJS)
 
 
 
 # all object files built from c files that include draw.h
 
-$(OBJS): tokenizer.h
+$(OBJS): tokenizer.h history.h
 
 
 
@@ -42,10 +43,10 @@ $(OBJS): tokenizer.h
 
 clean:
 
-	rm -f *.o tokenize
+	rm -f *.o tokenizer
 
 
 
-run:tokenize
+run:tokenizer
 
-	./tokenize
+	./tokenizer

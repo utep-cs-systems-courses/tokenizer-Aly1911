@@ -1,145 +1,91 @@
 #ifndef _TOKENIZER_
+
 #define _TOKENIZER_
 
 
-#include <stdio.h>
 
 
 
-int main()
+/* Return true (non-zero) if c is a whitespace characer
 
-{
+   ('\t' or ' ').  
 
-  char *word_start(char *str);
+   Zero terminators are not printable (therefore false) */
 
-  int non_space_char(char c);
-
-  char *word_terminator(char *word);
-
-  char *copy_str(char *inStr, short len);
+int space_char(char c);
 
 
 
-  char words[] = "  fattyfatfatty";
+/* Return true (non-zero) if c is a non-whitespace 
 
-  printf("%c", *copy_str(words, 10));
+   character (not tab or space).  
 
+   Zero terminators are not printable (therefore false) */
 
-
-  return 0;
-
-}
+int non_space_char(char c);
 
 
 
-int space_char(char c) {
+/* Returns a pointer to the first character of the next 
 
-  if ( c == ' ' || c == '\t') {
+   space-separated word in zero-terminated str.  Return a zero pointer if 
 
-    return 1;
+   str does not contain any words. */
 
-  } else {
-
-    return 0;
-
-  }
-
-}
+char *word_start(char *str);
 
 
 
-int non_space_char(char c){
+/* Returns a pointer terminator char following *word */
 
-  switch (c) {
-
-  case '\t':
-
-  case ' ':
-
-  case '\0':
-
-    return 0;
-
-  default:
-
-    return 1;
-
-  }
-
-}
+char *word_terminator(char *word);
 
 
 
-char *word_start(char *str){
+/* Counts the number of words in the string argument. */
 
-  while(space_char(*str)){
-
-    str++;
-
-  }
-
-  return str;
-
-}
-
-
-
-char *word_terminator(char *word) {
-
-  while(non_space_char(*word)) {
-
-    word++;
-
-  }
-
-  return word;
-
-}
-
+int count_words(char *str);
 
 
 
 /* Returns a fresly allocated new zero-terminated string 
+
    containing <len> chars from <inStr> */
-char *copy_str(char *inStr, short len)
 
-{
+char *copy_str(char *inStr, short len);
 
-  char *copyStr = malloc(( len + 1) * sizeof(char));
 
-  int i;
 
-  for (i=0; i < len; i++){
+/* Returns a freshly allocated zero-terminated vector of freshly allocated 
 
-    copyStr[i] = inStr[i];
-
-  }
-
-  copyStr[i] = '\0';
-
-  return copyStr;
-
-}
-
-/*Returns a freshly allocated zero-terminated vector of freshly allocated 
    space-separated tokens from zero-terminated str.
 
    For example, tokenize("hello world string") would result in:
+
      tokens[0] = "hello"
+
      tokens[1] = "world"
+
      tokens[2] = "string" 
+
      tokens[3] = 0
-should be like 6-7 lines
-malloc ***
-int *numbers = (what casts it i.e.int*)malloc(number of bytes ex: with 5 numbers it would be 5*sizeofint so (5+1)*sizeof(int))
+
 */
+
 char **tokenize(char* str);
 
+
+
 /* Prints all tokens. */
+
 void print_tokens(char **tokens);
 
+
+
 /* Frees all tokens and the vector containing themx. */
+
 void free_tokens(char **tokens);
 
+
+
 #endif
- 
