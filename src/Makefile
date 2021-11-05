@@ -1,18 +1,13 @@
 
 
 
-OBJS= tokenizer.o uimain.o
+tokenizer.o: tokenizer.h tokenizer.c
+history.o: history.h history.c
+#uimain.o: tokenizer.h #history.h 
 
 
-all: tokenizer
-
-
-tokenizer.o: tokenizer.h
-history.o: history.h
-uimain.o: tokenizer.h #history.h 
-
-
-tokenizer: $(OBJS)
+tokenizer: history.o tokenizer.o
+	gcc -o tokenizer history.o tokenizer.o
 
 clean:
 
