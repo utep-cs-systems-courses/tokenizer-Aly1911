@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include "tokenizer.h"
 
 int main()
 {
@@ -12,3 +13,4 @@ int main()
   }
   return 0;
 }
+//Tests 

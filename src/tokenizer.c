@@ -1,13 +1,12 @@
 #include <stdlib.h>
-
+#include <stdio.h>
+#include "tokenizer.h"
 
 int space_char(char c) {
 
 
   if ( c == ' ' || c == '\t') {
-
     return 1;
-
   } else {
     return 0;
 
@@ -19,17 +18,11 @@ int space_char(char c) {
 int non_space_char(char c){
 
   switch (c){
-
   case '\t':
-
-  case ' ':
-    
+  case ' ':  
   case '\0':
-
     return 0;
-
   default:
-
     return 1;
   }
 }
@@ -55,6 +48,28 @@ char *word_terminator(char *word) {
   return word;
 
 }
+int count_words(char *str)
+
+{
+
+  char *tmp = str;
+  int count = 0;
+  int i = 0;
+  tmp = word_start(tmp);
+
+  while(*tmp){
+    if(non_space_char(*tmp)){
+      count++;
+    }
+
+    tmp=word_terminator(tmp);
+    tmp=word_start(tmp);
+
+  }
+  
+  return count;
+
+}
 
 
 /* Returns a fresly allocated new zero-terminated string 
@@ -66,17 +81,13 @@ char *copy_str(char *inStr, short len)
 {
 
   char *copyStr = malloc(( len + 1) * sizeof(char));
-
   int i;
 
   for (i=0; i < len; i++){
-
     copyStr[i] = inStr[i];
-
   }
 
   copyStr[i] = '\0';
-
   return copyStr;
 
 }
@@ -105,19 +116,67 @@ int *numbers = (what casts it i.e.int*)malloc(number of bytes ex: with 5 numbers
 
 */
 
-char **tokenize(char* str);
+char **tokenize(char* str)
+{
 
+  int size = count_words(str);
+  char **tokens = malloc((size + 1) * sizeof(char *));
+  int i;
+  int length;
+  char *p = str;
+
+  for(i = 0;i < size;i++){
+
+    p = word_start(p);
+    length = word_length(p);
+    tokens[i] = copy_str(p, length);
+    p = word_terminator(p);
+
+  }
+
+  tokens[i] = '\0';
+
+  return tokens;
+
+}
 
 
 /* Prints all tokens. */
 
-void print_tokens(char **tokens);
+void print_tokens(char **tokens)
 
+{
+
+  int i=0;
+
+  while (tokens[i]){
+
+    printf("Token[%d] = %s\n", i, tokens[i]);
+    i++;
+
+  }
+}
 
 
 /* Frees all tokens and the vector containing themx. */
 
-void free_tokens(char **tokens);
+void free_tokens(char **tokens)
+
+{
+
+  int i = 0;
+
+  while(tokens[i]){
+
+    free(tokens[i]);
+
+    i++;
+
+  }
+
+  free(tokens);
+
+}
 
 
 
