@@ -1,11 +1,12 @@
 Project 1: Tokenizer
 ====================
 # Added Functions
--One added function to help with the ui
+-One added function to help with the ui (string_compare)
 
-This file is written in the refreshingly simple `markdown` text
-formatting language.
+# General Functionality
+Should ask user whether they want to:
+-okenize, meaning add a string to be tokenized
+-print history, which will then prompt the user to enter h or an id
+and will print accordingly
+-quit, which will terminate the program
 
-To learn about text formatting using markdown, we encourage you to examine 
- - [../README.md](../README.md)
- - the online [Markdown Guide](https://www.markdownguide.org/).
