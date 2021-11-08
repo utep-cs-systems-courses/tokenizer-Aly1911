@@ -1,8 +1,7 @@
 Project 1: Tokenizer
 ====================
-# Instructions:
-
-You should document your tokenizer in this file.
+# Added Functions
+-One added function to help with the ui
 
 This file is written in the refreshingly simple `markdown` text
 formatting language.
