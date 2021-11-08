@@ -3,11 +3,9 @@
 #include "tokenizer.h"
 #include "history.h"
 
-
-
 int main()
 {
-  char word[2];
+  char word[100];
   char str[100];
   List *list = init_history();
 
@@ -16,8 +14,6 @@ int main()
     printf("t. Tokenizer\n");
     printf("p. Print History\n");
     printf("q. Quit\n");
-
-    // fpurge(stdin);
 
     fgets(word, 100, stdin);
     printf("You entered: %s\n", word);
@@ -50,8 +46,7 @@ int main()
       }
 
       else{
-
-	char ID = hist[1];
+	char ID = hist[0];
 	int id_num = ID - '0';
 	char *p = get_history(list, id_num);
 
